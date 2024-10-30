@@ -25,4 +25,12 @@ int load_data() inline {
         return ();
     }
 
+    int res = load_data();
+
+    int num = in_msg_body~load_uint(32);
+
+    res += num; ;; res = res + num;
+
+    save_data(res);
 }
+
