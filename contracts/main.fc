@@ -34,3 +34,6 @@ int load_data() inline {
     save_data(res);
 }
 
+int get_res() method_id {
+    return load_data();
+}
