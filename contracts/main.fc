@@ -7,7 +7,11 @@ int load_data() inline {
 }
 
 () save_data(int res) impure {
-    
+    set_data(
+        begin_cell()
+            .store_uint(res, 64)
+        .end_cell()
+    );
 }
 
 () recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
