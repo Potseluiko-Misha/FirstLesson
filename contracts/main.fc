@@ -20,5 +20,9 @@ int load_data() inline {
     }
 
     slice cs = in_msg_full.begin_parse();
-    
+    int flag = cs~load_uint(4);
+    if (flag & 1) {
+        return ();
+    }
+
 }
