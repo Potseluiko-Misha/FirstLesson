@@ -1,16 +1,20 @@
 #pragma version >=0.4.0;
 #include "imports/stdlib.fc";
 
-int load_data() inline {
+(int, cell) load_data() inline {
     slice ds = get_data().begin_parse();
-    return ds~load_uint(64);
+    return (
+        ds~load_uint(64),
+        (ds.slice_bits() > 0  ? ds~load_dict() : new_dict())
+    );
     ;;return ds.preload_uint(64) - не имеет курсора
 }
 
-() save_data(int res) impure {
+() save_data(int res, cell dict) impure {
     set_data(
         begin_cell()
             .store_uint(res, 64)
+            .store_dict(dict)
         .end_cell()
     );
 }
@@ -47,14 +51,14 @@ int get_res() method_id {
 ;; 4) method_id - чтение данных, всегда ставится для геттеров;
 
 ;; recursion 
-int power(int a, int n) {
-    if (n == 0) {
-        return 1;
-    }
-    if (n % 2 == 1) {
-        return power(a, n - 1) * a;
-    }
-
-    int b = power(a,  n / 2);
-    return b * b;
-}
+;;int power(int a, int n) {
+;;    if (n == 0) {
+;;        return 1;
+;;   }
+;;    if (n % 2 == 1) {
+;;        return power(a, n - 1) * a;
+;;    }
+;;
+;;    int b = power(a,  n / 2);
+;;    return b * b;
+;;}
