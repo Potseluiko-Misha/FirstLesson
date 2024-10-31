@@ -62,3 +62,16 @@ int get_res() method_id {
 ;;    int b = power(a,  n / 2);
 ;;    return b * b;
 ;;}
+
+cell clean_dicttionary(cell dict, int total) {
+    int pivot = total - 10;
+    do {
+        (pivot, slice value, int found) = dict.udict_get_prev?(256, pivot);
+
+        if (found) {
+            dict~udict_delete_get?(256, pivot);
+        }
+    } until ( ~ found)
+
+    return dict;
+}
