@@ -63,15 +63,35 @@ int get_res() method_id {
 ;;    return b * b;
 ;;}
 
-cell clean_dicttionary(cell dict, int total) {
-    int pivot = total - 10;
+;;cell clean_dictionary(cell dict, int total) {
+;;    int pivot = total - 10;
+;;    do {
+;;        (pivot, slice value, int found) = dict.udict_get_prev?(256, pivot);
+;;
+;;        if (found) {
+;;            dict~udict_delete_get?(256, pivot);
+;;        }
+;;    } until ( ~ found)
+;;
+;;    return dict;
+;;}
+
+var get_addrr_list() method_id {
+    (_, cell dict) = load_data();
+
+    var l = null();
+    int pivot = 100;
+
     do {
         (pivot, slice value, int found) = dict.udict_get_prev?(256, pivot);
 
         if (found) {
-            dict~udict_delete_get?(256, pivot);
+            slice addr = value~load_msg_addr();
+
+            l = cons(addr, l);
         }
+        
     } until ( ~ found)
 
-    return dict;
+    return l;
 }
