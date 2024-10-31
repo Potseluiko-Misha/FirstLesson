@@ -4,6 +4,7 @@
 int load_data() inline {
     slice ds = get_data().begin_parse();
     return ds~load_uint(64);
+    ;;return ds.preload_uint(64) - не имеет курсора
 }
 
 () save_data(int res) impure {
