@@ -76,22 +76,22 @@ int get_res() method_id {
 ;;    return dict;
 ;;}
 
-var get_addrr_list() method_id {
-    (_, cell dict) = load_data();
-
-    var l = null();
-    int pivot = 100;
-
-    do {
-        (pivot, slice value, int found) = dict.udict_get_prev?(256, pivot);
-
-        if (found) {
-            slice addr = value~load_msg_addr();
-
-            l = cons(addr, l);
-        }
-        
-    } until ( ~ found)
-
-    return l;
-}
+;;var get_addrr_list() method_id {
+;;    (_, cell dict) = load_data();
+;;
+;;    var l = null();
+;;    int pivot = 100;
+;;
+;;    do {
+;;        (pivot, slice value, int found) = dict.udict_get_prev?(256, pivot);
+;;
+;;        if (found) {
+;;            slice addr = value~load_msg_addr();
+;;
+;;            l = cons(addr, l);
+;;        }
+;;
+;;    } until ( ~ found)
+;;
+;;    return l;
+;;S}
