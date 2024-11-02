@@ -7,7 +7,7 @@
         ds~load_uint(64),
         (ds.slice_bits() > 0  ? ds~load_dict() : new_dict())
     );
-    ;;return ds.preload_uint(64) - не имеет курсора
+    ;; return ds.preload_uint(64) - не имеет курсора;
 }
 
 () save_data(int res, cell dict) impure {
