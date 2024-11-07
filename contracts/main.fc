@@ -1,47 +1,27 @@
 #pragma version >=0.4.0;
 #include "imports/stdlib.fc";
 
-(int, cell) load_data() inline {
-    slice ds = get_data().begin_parse();
-    return (
-        ds~load_uint(64),
-        (ds.slice_bits() > 0  ? ds~load_dict() : new_dict())
-    );
-    ;; return ds.preload_uint(64) - не имеет курсора;
-}
 
-() save_data(int res, cell dict) impure {
-    set_data(
-        begin_cell()
-            .store_uint(res, 64)
-            .store_dict(dict)
-        .end_cell()
-    );
-}
 
 () recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    if (flags & 1) {
+        return ();
+    }
+    slice sender_address = cs~load_msg_addr();
+
     if (in_msg_body.slice_empty?()) {
         return ();
     }
-
-    slice cs = in_msg_full.begin_parse();
-    int flag = cs~load_uint(4);
-    if (flag & 1) {
-        return ();
-    }
-
-    int res = load_data();
-
-    int num = in_msg_body~load_uint(32);
-
-    res += num; ;; res = res + num;
-
-    save_data(res);
+    
 }
 
-int get_res() method_id {
-    return load_data();
+() recv_external(slice in_msg) impure {
+    
 }
+
+
 
 ;; types of specificator: 
 ;; на первом месте стоит impure, только потом можно inline;
