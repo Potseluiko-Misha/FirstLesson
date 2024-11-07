@@ -10,6 +10,16 @@
     );
 }
 
+() store_data(int seqno, int public_key, slice owner_address) impure inline {
+    set_data(
+        begin_cell()
+            .store_uint(seqno, 32)
+            .store_uint(public_key, 256)
+            .store_slice(owner_address)
+        .end_cell()
+    );
+}
+
 
 () recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
     slice cs = in_msg_full.begin_parse();
