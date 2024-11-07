@@ -18,7 +18,11 @@
 }
 
 () recv_external(slice in_msg) impure {
-    
+    var signature = in_msg~load_bits(512);
+    slice tmp_in_msg = in_msg;
+    var hash = slice_hash(in_msg);
+
+    throw_unless(401, check_signature(hash, signature, public_key));    
 }
 
 
