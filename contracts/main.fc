@@ -43,6 +43,10 @@
     (int seqno, int public_key, slice owner_address) = load_data();
     
     throw_unless(401, check_signature(hash, signature, public_key));    
+
+    int msg_seqno = tmp_in_msg~load_uint(32);
+
+    throw_unless(402, msg_seqno == seqno);
 }
 
 
