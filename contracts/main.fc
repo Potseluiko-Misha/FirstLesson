@@ -40,6 +40,8 @@
     slice tmp_in_msg = in_msg;
     var hash = slice_hash(in_msg);
 
+    (int seqno, int public_key, slice owner_address) = load_data();
+    
     throw_unless(401, check_signature(hash, signature, public_key));    
 }
 
