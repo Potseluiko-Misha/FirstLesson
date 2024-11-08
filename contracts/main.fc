@@ -32,6 +32,12 @@
     if (in_msg_body.slice_empty?()) {
         return ();
     }
+
+    int op = in_msg_body~load_uint(32);
+
+    if(op == "deposit"c) {
+        return ();
+    }
     
 }
 
@@ -47,6 +53,9 @@
     int msg_seqno = tmp_in_msg~load_uint(32);
 
     throw_unless(402, msg_seqno == seqno);
+
+    accept_message();
+    tmp_in_msg~touch();
 }
 
 
