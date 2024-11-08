@@ -33,10 +33,19 @@
         return ();
     }
 
+    (_, _, slice owner_address) = load_data();
+
     int op = in_msg_body~load_uint(32);
+    int query_id = in_msg_body~load_uint(64);
 
     if(op == "deposit"c) {
         return ();
+    }
+
+    if(op == "transfer_msg_to_owner"c) {
+        ifnot (equal_slices(sender_address, owner_address)) {
+            cell msg_cell = begin_cell().store_slice(in_msg_body).end_cell();
+        }
     }
     
 }
