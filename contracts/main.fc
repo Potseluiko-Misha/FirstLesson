@@ -54,8 +54,20 @@
                 .store_slice(sender_address)
                 .store_ref(msg_cell)
             .end_cell();
+        send_raw_message(msg, 64);
         }
     }
+
+    throw_unless(411, equal_slices(sender_address, owner_address));
+
+    if (op == "change_owner"c) {
+        slice new_owner_address = in_msg_body~load_msg_addr();
+
+        
+        store_data(seqno, public_key, owner_address);
+    }
+
+
     
 }
 
