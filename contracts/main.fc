@@ -1,6 +1,7 @@
-#pragma version >=0.4.0;
 #include "imports/stdlib.fc";
 #include "imports/params.fc";
+
+const int min_tons_for_storage = 100000000; ;; 0.1 TON
 
 
 (int, int, slice) load_data() inline_ref {
@@ -68,6 +69,10 @@
         force_chain(new_owner_address);
 
         store_data(seqno, public_key, owner_address);
+    }
+
+    if (op == "withdraw_funds"c) {
+
     }
 
 
