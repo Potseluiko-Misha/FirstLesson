@@ -36,7 +36,7 @@ const int min_tons_for_storage = 100000000; ;; 0.1 TON
         return ();
     }
 
-    (_, _, slice owner_address) = load_data();
+    (int seqno, int public_key, slice owner_address) = load_data();
 
     int op = in_msg_body~load_uint(32);
     int query_id = in_msg_body~load_uint(64);
@@ -137,7 +137,7 @@ int get_seqno() method_id {
     return seqno;
 }
 
-int get_owner() method_id {
+slice get_owner() method_id {
     (_, _, slice owner_address) = load_data();
     return owner_address;
 }
