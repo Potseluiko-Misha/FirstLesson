@@ -97,7 +97,7 @@ const int min_tons_for_storage = 100000000; ;; 0.1 TON
         throw(0);
     }
 
-
+    throw(0xffffff); ;; 0xfffffe - op not allowed
     
 }
 
