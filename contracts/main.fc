@@ -128,6 +128,13 @@ const int min_tons_for_storage = 100000000; ;; 0.1 TON
             .end_cell();
         send_raw_message(msg, 128 + 32);
     }
+
+    store_data(seqno + 1, public_key, owner_address);
+}
+
+int get_seqno() method_id {
+    (int seqno, _, _) = load_data();
+    return seqno;
 }
 
 
