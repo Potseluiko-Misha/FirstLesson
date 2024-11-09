@@ -137,6 +137,11 @@ int get_seqno() method_id {
     return seqno;
 }
 
+int get_owner() method_id {
+    (_, _, slice owner_address) = load_data();
+    return owner_address;
+}
+
 
 
 ;; types of specificator: 
